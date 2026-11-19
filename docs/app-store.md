@@ -51,8 +51,8 @@ Hesap yok, reklam yok, izleme yok. Notların yalnızca senin iPhone'unda kalır.
 
 **Anahtar kelimeler (100):** odak,düşünme,sessizlik,konsantrasyon,zamanlayıcı,pomodoro,ekran süresi,dikkat,not,meditasyon
 
-**Destek URL'si:** GitHub depo adresi (Issues sayfası)
-**Gizlilik politikası URL'si:** GitHub Pages üzerindeki `docs/privacy-policy` sayfası
+**Destek URL'si:** https://github.com/derindvc/muzik-yok/issues
+**Gizlilik politikası URL'si:** https://derindvc.github.io/muzik-yok/privacy-policy
 
 ## 4. Uygulama Gizliliği (App Privacy) formu
 

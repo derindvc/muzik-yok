@@ -47,7 +47,7 @@ Bu politika değişirse güncel hali bu sayfada yayımlanır ve yukarıdaki tari
 
 ## İletişim
 
-Sorularınız için: [GitHub Issues](../../issues)
+Sorularınız için: [GitHub Issues](https://github.com/derindvc/muzik-yok/issues)
 
 ---
 
@@ -63,4 +63,4 @@ Müzik Yok does **not** collect, store on a server, or share any personal data. 
 - **Screen Time (Family Controls)** is used to temporarily limit apps you choose. Apple provides these as opaque tokens; the app cannot see app names.
 - **Notes**, session history and preferences stay on your iPhone and can be deleted in the app at any time. Deleting the app deletes all data.
 
-Questions: open an issue on this repository.
+Questions: [GitHub Issues](https://github.com/derindvc/muzik-yok/issues).
