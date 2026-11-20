@@ -274,7 +274,8 @@ class _ThinkingScreenState extends State<ThinkingScreen>
       case 'unavailable':
         return 'Parça adı bulunamadı.';
       case 'error':
-        return 'Parça tanıma şu anda kullanılamıyor.';
+        final error = status['songError'] as String? ?? '';
+        return error.isNotEmpty ? error : 'Parça tanıma şu anda kullanılamıyor.';
       default:
         return '';
     }

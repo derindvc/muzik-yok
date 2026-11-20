@@ -611,10 +611,33 @@ private final class AmbientMusicMonitor: NSObject, SNResultsObserving, SHSession
 
   func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: Error?) {
     guard let error else { return }
+    let nsError = error as NSError
+    let message = Self.shazamErrorMessage(nsError)
+    UserDefaults.standard.set("\(nsError.domain) \(nsError.code): \(nsError.localizedDescription)", forKey: "MuzikYokLastShazamError")
     DispatchQueue.main.async { [weak self] in
-      guard let self, self.running else { return }
+      guard let self, self.running, self.songState != "matched" else { return }
       self.songState = "error"
-      self.songError = error.localizedDescription
+      self.songError = message
+      // Network-type failures are usually transient: allow a new attempt after 10 s instead of 35 s.
+      if nsError.domain == SHErrorDomain, nsError.code == SHError.Code.matchAttemptFailed.rawValue {
+        self.lastShazamAttempt = Date().addingTimeInterval(-25)
+      }
+    }
+  }
+
+  private static func shazamErrorMessage(_ error: NSError) -> String {
+    guard error.domain == SHErrorDomain, let code = SHError.Code(rawValue: error.code) else {
+      return "Parça tanıma şu anda kullanılamıyor (\(error.domain) \(error.code))."
+    }
+    switch code {
+    case .matchAttemptFailed:
+      return "Shazam'a ulaşılamadı. İnternet bağlantısını kontrol et (SH \(error.code))."
+    case .invalidAudioFormat, .audioDiscontinuity:
+      return "Mikrofon sesi Shazam'a uygun değil (SH \(error.code))."
+    case .signatureInvalid, .signatureDurationInvalid:
+      return "Parça tanımak için ses yeterli değildi (SH \(error.code))."
+    default:
+      return "Parça tanıma şu anda kullanılamıyor (SH \(error.code))."
     }
   }
 
